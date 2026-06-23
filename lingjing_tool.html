@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#1c1030">
+<title>靈境｜答案桌遊</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>:root{--ink:#1c1030;--ink2:#2a1a4a;--lilac:#9B72CF;--lilac-l:#C8A2E8;--gold:#C4892A;--gold-l:#F0C96E;--fog:#f4eff9;--fire:#C0392B;--fire-l:#FF8C69;--water:#1A5F7A;--water-l:#6CB4E4;--wind:#7B5AB0;--wind-l:#D4B8F0;--earth:#2D6A4F;--earth-l:#74C69D;--r:12px;--safe-b:env(safe-area-inset-bottom,0px);}*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}html,body{height:100%;overflow:hidden}body{font-family:'Noto Sans TC',sans-serif;background:#f4eff9;color:#262626;display:flex;flex-direction:column}.topbar{flex-shrink:0;background:rgba(28,16,48,0.96);border-bottom:1px solid rgba(155,114,207,0.25);padding:10px 14px;display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(10px)}.tb-brand{font-family:'Noto Serif TC',serif;font-size:14px;color:var(--lilac-l);letter-spacing:2px}.tb-sub{font-size:10px;color:rgba(255,255,255,0.35);margin-top:1px}.tb-btns{display:flex;gap:6px}.tb-btn{height:32px;padding:0 10px;border-radius:16px;border:1px solid rgba(200,162,232,0.25);background:rgba(155,114,207,0.15);color:var(--lilac-l);font-size:11px;cursor:pointer;transition:all .2s;white-space:nowrap}.tb-btn:active{opacity:.7;transform:scale(.96)}.tb-btn.gold{border-color:rgba(196,137,42,0.4);background:rgba(196,137,42,0.15);color:var(--gold-l)}.nav-tabs{flex-shrink:0;display:flex;background:#fff;border-bottom:1px solid rgba(155,114,207,0.18);overflow-x:auto;scrollbar-width:none}.nav-tabs::-webkit-scrollbar{display:none}.nav-tab{flex-shrink:0;padding:9px 16px;font-size:12px;color:#262626;cursor:pointer;position:relative;white-space:nowrap;transition:color .2s}.nav-tab.active{color:var(--lilac)}.nav-tab.active::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--lilac)}.main{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch}.screen{display:none;padding:12px 12px calc(80px + var(--safe-b))}.screen.active{display:block}.card{background:#fff;border:1px solid rgba(155,114,207,0.2);box-shadow:0 2px 8px rgba(155,114,207,0.08);border-radius:var(--r);padding:14px;margin-bottom:10px}.card-title{font-family:'Noto Serif TC',serif;font-size:13px;color:#3a0080;margin-bottom:12px;display:flex;align-items:center;gap:7px;letter-spacing:1px}.fg{margin-bottom:11px}.fl{font-size:10px;color:#262626;margin-bottom:4px;letter-spacing:1px}.fi,.fs,.fta{width:100%;padding:9px 11px;background:#faf7fd;border:1px solid rgba(155,114,207,0.25);border-radius:8px;color:#262626;font-size:13px;font-family:'Noto Sans TC',sans-serif;outline:none;transition:border .18s;-webkit-appearance:none}.fi:focus,.fs:focus,.fta:focus{border-color:var(--lilac);background:#fff}.fs option{background:#fff;color:#262626}.fta{resize:vertical;min-height:60px;line-height:1.6}.fi::placeholder,.fta::placeholder{color:rgba(28,16,48,0.3)}.row2{display:grid;grid-template-columns:1fr 1fr;gap:8px}.auto-tag{display:inline-block;padding:2px 10px;border-radius:10px;font-size:11px;margin-top:4px}.tag-fire{background:rgba(255,220,210,0.7);color:#7a1a0a;border:1px solid rgba(192,57,43,0.3);font-weight:600}.tag-water{background:rgba(210,235,248,0.8);color:#0a3a50;border:1px solid rgba(26,95,122,0.3);font-weight:600}.tag-wind{background:rgba(230,220,248,0.8);color:#3a0080;border:1px solid rgba(123,90,176,0.3);font-weight:600}.tag-earth{background:rgba(210,240,225,0.8);color:#1a4a30;border:1px solid rgba(45,106,79,0.3);font-weight:600}.player-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}.ptab{padding:7px 14px;border-radius:20px;border:1px solid rgba(155,114,207,0.25);background:rgba(155,114,207,0.06);font-size:12px;color:#262626;cursor:pointer;transition:all .18s}.ptab.active{background:rgba(155,114,207,0.3);border-color:rgba(200,162,232,0.5);color:var(--lilac-l)}.player-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}.player-name-big{font-family:'Noto Serif TC',serif;font-size:16px;color:var(--lilac)}.player-meta{font-size:11px;color:rgba(28,16,48,0.7);margin-top:2px}.round-item{background:#faf7fd;border:1px solid rgba(155,114,207,0.15);border-radius:8px;padding:10px 12px;margin-bottom:6px;display:flex;align-items:flex-start;gap:10px}.round-num{flex-shrink:0;width:22px;height:22px;border-radius:50%;background:rgba(155,114,207,0.12);font-size:10px;color:#3a0080;display:flex;align-items:center;justify-content:center;margin-top:1px}.round-body{flex:1;min-width:0}.round-player{font-size:11px;color:#262626;margin-bottom:3px}.round-card-row{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:4px}.round-obs{font-size:11px;color:rgba(28,16,48,0.6);line-height:1.5;margin-top:3px}.round-delete{flex-shrink:0;width:22px;height:22px;border-radius:50%;border:1px solid rgba(192,57,43,0.25);background:rgba(255,220,210,0.5);color:#7a1a0a;font-size:11px;cursor:pointer;display:flex;align-items:center;justify-content:center}.card-chip{padding:3px 9px;border-radius:8px;font-size:11px;font-weight:600}.cc-issue{background:#1a1200;color:#F0C96E;border:1px solid #8B6A00}.cc-guide-fire{background:rgba(255,220,210,0.85);color:#7a1a0a;border:1px solid rgba(192,57,43,0.4)}.cc-guide-earth{background:rgba(210,240,225,0.85);color:#1a4a30;border:1px solid rgba(45,106,79,0.4)}.cc-guide-wind{background:rgba(230,220,248,0.85);color:#3a0080;border:1px solid rgba(123,90,176,0.4)}.cc-guide-water{background:rgba(210,235,248,0.85);color:#0a3a50;border:1px solid rgba(26,95,122,0.4)}.cc-explore-up{background:#0a1a0a;color:#00e676;border:1px solid #00c853}.cc-explore-rev{background:#1a0a0a;color:#ff5252;border:1px solid #d32f2f}.cc-truth-up{background:#fffde7;color:#1b5e20;border:1px solid #388e3c}.cc-truth-rev{background:#fffde7;color:#b71c1c;border:1px solid #c62828}.cc-patron{background:rgba(230,220,248,0.9);color:#3a0080;border:1px solid rgba(123,90,176,0.5)}.cc-release-grid{background:#1a1a1a;color:#fff;border:1px solid #444}.cc-release-vol{background:#b71c1c;color:#fff;border:1px solid #7f0000}.cc-special{background:rgba(196,137,42,0.15);color:#5a3a00;border:1px solid rgba(196,137,42,0.4)}.add-panel{background:rgba(155,114,207,0.06);border:1px solid rgba(155,114,207,0.2);border-radius:var(--r);padding:14px;margin-bottom:10px}.grid-type{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:10px}.type-btn{padding:8px 4px;border-radius:8px;border:1px solid rgba(155,114,207,0.2);background:#faf7fd;color:#262626;font-size:11px;text-align:center;cursor:pointer;transition:all .15s;line-height:1.4}.type-btn.sel{background:rgba(155,114,207,0.3);border-color:rgba(200,162,232,0.5);color:var(--lilac-l)}.type-btn .t-ico{font-size:16px;display:block;margin-bottom:3px}.btn-primary{width:100%;padding:13px;background:linear-gradient(135deg,var(--lilac),var(--ink2));border:1px solid rgba(200,162,232,0.3);border-radius:10px;color:#fff;font-family:'Noto Serif TC',serif;font-size:14px;cursor:pointer;letter-spacing:2px;transition:all .2s}.btn-primary:active{transform:scale(.98);opacity:.9}.btn-primary:disabled{opacity:.35;cursor:not-allowed}.btn-sec{padding:8px 12px;background:#faf7fd;border:1px solid rgba(155,114,207,0.25);border-radius:8px;color:#262626;font-size:12px;cursor:pointer;transition:all .2s}.btn-sec:active{opacity:.7}.btn-pass{width:100%;padding:13px;background:linear-gradient(135deg,#3a0080,#6a1ab0);border:1px solid rgba(123,90,176,0.5);border-radius:10px;color:#fff;font-family:'Noto Serif TC',serif;font-size:14px;cursor:pointer;letter-spacing:3px;transition:all .2s}.btn-pass:active{transform:scale(.98)}.btn-row{display:flex;gap:8px}.btn-row .btn-primary,.btn-row .btn-sec{flex:1}.div{height:1px;background:rgba(200,162,232,0.1);margin:10px 0}.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,0.97);backdrop-filter:blur(12px);padding:6px 10px calc(6px + var(--safe-b));display:flex;gap:6px;border-top:1px solid rgba(155,114,207,0.2)}.modal-bg{display:none;position:fixed;inset:0;z-index:200;background:rgba(10,4,24,0.85);backdrop-filter:blur(6px);align-items:flex-end}.modal-bg.show{display:flex}.modal-box{width:100%;max-height:88vh;background:#fff;border-radius:20px 20px 0 0;border-top:1px solid rgba(200,162,232,0.2);padding:16px 14px calc(20px + var(--safe-b));overflow-y:auto}.modal-title{font-family:'Noto Serif TC',serif;font-size:15px;color:#3a0080;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between}.modal-close{width:28px;height:28px;border-radius:50%;border:1px solid rgba(155,114,207,0.2);background:rgba(155,114,207,0.08);color:rgba(28,16,48,0.7);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center}.loading{display:none;position:fixed;inset:0;z-index:300;background:rgba(28,16,48,0.92);backdrop-filter:blur(8px);flex-direction:column;align-items:center;justify-content:center;gap:16px}.loading.show{display:flex}.spin{width:48px;height:48px;border-radius:50%;border:2px solid transparent;border-top-color:var(--lilac-l);border-right-color:var(--gold);animation:spin 1.1s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}.loading-txt{font-family:'Noto Serif TC',serif;color:var(--lilac-l);font-size:13px;letter-spacing:3px;text-align:center}.toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(10px);background:rgba(28,16,48,0.92);color:var(--lilac-l);padding:9px 18px;border-radius:18px;font-size:12px;border:1px solid rgba(200,162,232,0.3);opacity:0;pointer-events:none;transition:all .25s;z-index:400;white-space:nowrap}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}.bp-stage{margin-bottom:14px}.bp-stage-hd{font-size:11px;letter-spacing:2px;color:rgba(28,16,48,0.7);margin-bottom:8px}.bp-slots{display:flex;gap:7px;flex-wrap:wrap}.bp-slot{flex:1;min-width:75px;max-width:120px;border-radius:8px;padding:9px 7px;text-align:center;cursor:pointer;transition:all .15s;border:1.5px dashed rgba(155,114,207,0.25);background:#faf7fd}.bp-slot.filled{border-style:solid;border-color:rgba(200,162,232,0.4)}.bp-slot-tag{font-size:9px;opacity:.6;margin-bottom:3px;letter-spacing:1px}.bp-slot-name{font-size:12px;line-height:1.3;color:var(--lilac)}.bp-slot-pos{font-size:10px;opacity:.65;margin-top:2px}.bp-slot-empty{font-size:11px;color:rgba(28,16,48,0.55)}.empty{text-align:center;padding:28px 16px;color:rgba(28,16,48,0.45);font-size:12px;line-height:1.8}.rp{max-width:480px;margin:0 auto;padding:16px 14px 60px}.rp-header{text-align:center;padding:28px 20px;background:linear-gradient(155deg,var(--ink) 0%,var(--ink2) 55%,#3a1060 100%);border-radius:16px;margin-bottom:16px;color:#fff}.rp-brand{font-size:10px;letter-spacing:4px;color:var(--lilac-l);margin-bottom:10px}.rp-title{font-family:'Noto Serif TC',serif;font-size:21px;color:var(--gold-l);margin-bottom:6px}.rp-q{font-size:13px;color:rgba(255,255,255,0.65);line-height:1.7;padding:9px 13px;background:rgba(255,255,255,0.06);border-radius:8px;margin-top:9px}.rp-date{font-size:10px;color:rgba(255,255,255,0.3);margin-top:8px}.rp-sec{background:#fff;border-radius:14px;padding:18px;margin-bottom:12px;box-shadow:0 2px 12px rgba(28,16,48,0.08)}.rp-sec-title{font-family:'Noto Serif TC',serif;font-size:14px;color:var(--lilac);margin-bottom:12px;padding-bottom:9px;border-bottom:1px solid rgba(155,114,207,0.15);display:flex;align-items:center;gap:7px}.rp-stage-row{margin-bottom:16px}.rp-stage-nm{font-size:10px;letter-spacing:3px;color:var(--lilac);margin-bottom:7px;font-weight:500}.rp-chips{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px}.rc{padding:4px 9px;border-radius:14px;font-size:11px;font-weight:500}.rc-issue{background:rgba(196,137,42,0.12);color:#7B5A10;border:1px solid rgba(196,137,42,0.28)}.rc-fire{background:rgba(192,57,43,0.1);color:#8B1A0A;border:1px solid rgba(192,57,43,0.25)}.rc-earth{background:rgba(45,106,79,0.1);color:#1A4A30;border:1px solid rgba(45,106,79,0.25)}.rc-wind{background:rgba(123,90,176,0.1);color:#3A1878;border:1px solid rgba(123,90,176,0.25)}.rc-water{background:rgba(26,95,122,0.1);color:#0A3A50;border:1px solid rgba(26,95,122,0.25)}.rc-tarot{background:rgba(44,44,84,0.08);color:#2a1a5a;border:1px solid rgba(44,44,84,0.25)}.rp-insight{font-size:13px;line-height:1.9;color:#333;white-space:pre-wrap;padding:9px 11px;background:rgba(155,114,207,0.05);border-radius:7px;border-left:3px solid rgba(155,114,207,0.3)}.rp-conclusion{font-size:13px;line-height:2;color:#333;white-space:pre-wrap}.rp-nextstep{text-align:center;padding:18px;border:1.5px dashed rgba(155,114,207,0.35);border-radius:12px}.rp-ns-q{font-size:12px;color:var(--lilac);margin-bottom:10px;line-height:1.7}.ns-line{width:100%;border:none;border-bottom:1.5px solid rgba(155,114,207,0.35);background:transparent;text-align:center;font-size:14px;color:var(--ink);padding:7px 4px;outline:none;font-family:'Noto Serif TC',serif}.rp-footer{text-align:center;padding:18px;background:linear-gradient(135deg,var(--ink),var(--ink2));border-radius:14px;color:#fff}.rp-footer-brand{font-family:'Noto Serif TC',serif;font-size:15px;color:var(--gold-l);margin-bottom:5px}.rp-footer-txt{font-size:11px;color:rgba(255,255,255,0.5);line-height:1.7}.rp-footer-link{display:inline-block;margin-top:10px;padding:7px 18px;border-radius:18px;border:1px solid rgba(200,162,232,0.35);color:var(--lilac-l);font-size:11px;text-decoration:none;letter-spacing:1px}@media print{.topbar,.nav-tabs,.bottom-nav,.modal-bg,.loading,.toast{display:none!important}body{overflow:visible!important}html,body{height:auto!important}.main{overflow:visible!important}}</style></head><body><div class="topbar"><div><div class="tb-brand">靈境｜答案桌遊</div><div class="tb-sub" id="tb-sub">場次記錄工具</div></div><div class="tb-btns"><button class="tb-btn" onclick="showTab('session')">場次</button><button class="tb-btn" onclick="showTab('game')">遊戲</button><button class="tb-btn" onclick="showTab('blueprint')">藍圖</button><button class="tb-btn gold" onclick="showTab('report')">報告</button></div></div><div class="nav-tabs"><div class="nav-tab active" data-tab="session" onclick="showTab('session')">① 場次設定</div><div class="nav-tab" data-tab="players" onclick="showTab('players')">② 玩家建立</div><div class="nav-tab" data-tab="game" onclick="showTab('game')">③ 遊戲記錄</div><div class="nav-tab" data-tab="blueprint" onclick="showTab('blueprint')">④ 答案藍圖</div><div class="nav-tab" data-tab="generate" onclick="showTab('generate')">⑤ 生成報告</div><div class="nav-tab" data-tab="report" onclick="showTab('report')">⑥ 玩家報告</div></div><div class="main"><!-- ① 場次設定 --><div class="screen active" id="screen-session"><div class="card"><div class="card-title" style="color:#3a0080;font-size:14px"><span>🌙</span>場次基本資訊</div><div class="fg"><div class="fl">場次編號</div><input class="fi" id="s-no" placeholder="例：2026-06-001" oninput="save()"></div><div class="row2"><div class="fg"><div class="fl">帶領日期</div><input class="fi" type="date" id="s-date" oninput="save()"></div><div class="fg"><div class="fl">開始時間</div><input class="fi" type="time" id="s-time" oninput="save()"></div></div><div class="row2"><div class="fg"><div class="fl">預計時長</div><select class="fs" id="s-dur-plan" onchange="save()"><option value="">— 選擇 —</option><option value="1小時">1 小時</option><option value="2小時">2 小時</option><option value="3小時">3 小時</option><option value="4小時">4 小時</option></select></div><div class="fg"><div class="fl">結束時間</div><input class="fi" type="time" id="s-dur-real" oninput="save()"></div></div><div class="row2"><div class="fg"><div class="fl">形式</div><select class="fs" id="s-mode" onchange="save()"><option value="線下">線下</option><option value="線上">線上</option></select></div><div class="fg"><div class="fl">玩家人數</div><select class="fs" id="s-count" onchange="syncPlayerCount()"><option value="1">1人</option><option value="2">2人</option><option value="3">3人</option><option value="4" selected>4人</option></select></div></div><div class="fg"><div class="fl">場地</div><input class="fi" id="s-venue" placeholder="例：台北信義／線上Zoom" oninput="save()"></div><div class="fg"><div class="fl">玩家來源</div><select class="fs" id="s-src" onchange="toggleSrcOther()" style="margin-bottom:5px"><option>朋友</option><option>IG</option><option>FB</option><option>活動通</option><option>轉介紹</option><option value="其他">其他（自填）</option></select><input class="fi" id="s-src-other" placeholder="請填寫來源..." style="display:none" oninput="save()"></div><div class="fg"><div class="fl">備註</div><textarea class="fta" id="s-note" placeholder="場次前的備忘..." oninput="save()"></textarea></div></div><button class="btn-primary" onclick="showTab('players')">建立玩家資料 →</button></div><!-- ② 玩家建立 --><div class="screen" id="screen-players"><div id="players-list"></div><button class="btn-primary" onclick="showTab('game')" style="margin-top:4px">開始遊戲記錄 →</button></div><!-- ③ 遊戲記錄 --><div class="screen" id="screen-game"><div class="card" style="padding:10px 12px"><div style="font-size:10px;color:rgba(28,16,48,0.5);margin-bottom:7px;letter-spacing:1px">選擇玩家</div><div class="player-tabs" id="game-player-tabs"></div></div><div class="card" id="current-player-card"><div class="empty">請先在上方選擇玩家</div></div><div class="add-panel" id="add-round-panel" style="display:none"><div style="font-family:'Noto Serif TC',serif;font-size:13px;color:#262626;font-weight:700;margin-bottom:10px">記錄這一輪</div><div style="font-size:12px;color:#262626;font-weight:700;margin-bottom:6px;letter-spacing:1px">走到的格子</div><div class="grid-type" id="grid-type"><div class="type-btn" data-type="issue" onclick="selectType('issue')"><span class="t-ico">🎭</span>議題卡</div><div class="type-btn" data-type="guide" onclick="selectType('guide')"><span class="t-ico">🌠</span>指引卡</div><div class="type-btn" data-type="explore" onclick="selectType('explore')"><span class="t-ico">🔮</span>探索卡</div><div class="type-btn" data-type="truth" onclick="selectType('truth')"><span class="t-ico">👁️‍🗨️</span>真相卡</div><div class="type-btn" data-type="patron" onclick="selectType('patron')"><span class="t-ico">💎</span>貴人卡</div><div class="type-btn" data-type="release" onclick="selectType('release')"><span class="t-ico">🪨</span>放下卡</div><div class="type-btn" data-type="wheel" onclick="selectType('wheel')"><span class="t-ico">☯</span>命運之輪</div><div class="type-btn" data-type="golden" onclick="selectType('golden')"><span class="t-ico">⭐</span>黃金格</div></div><div id="card-select-area"></div><div class="fg" style="margin-top:8px"><div class="fl">現場觀察（選填）</div><textarea class="fta" id="round-obs" placeholder="玩家的反應、說的話..." rows="2" style="min-height:50px"></textarea></div><div class="btn-row" style="margin-top:8px"><button class="btn-sec" onclick="cancelRound()">取消</button><button class="btn-primary" onclick="confirmRound()">記錄</button></div></div><div class="card"><div class="card-title"><span>📋</span>本場輪次記錄</div><div id="rounds-list"><div class="empty">還沒有記錄，點下方「記錄這一輪」開始</div></div></div></div><!-- ④ 答案藍圖 --><div class="screen" id="screen-blueprint"><div class="card" style="padding:10px 12px"><div style="font-size:10px;color:rgba(28,16,48,0.5);margin-bottom:7px;letter-spacing:1px">選擇玩家</div><div class="player-tabs" id="bp-player-tabs"></div></div><div id="bp-content"><div class="empty">請選擇玩家來設定答案藍圖</div></div></div><!-- ⑤ 生成報告 --><div class="screen" id="screen-generate"><div class="card" style="padding:10px 12px"><div style="font-size:10px;color:rgba(28,16,48,0.5);margin-bottom:7px;letter-spacing:1px">選擇玩家</div><div class="player-tabs" id="gen-player-tabs"></div></div><div class="card" id="gen-summary"></div><div class="card"><button class="btn-primary" onclick="generateReport()" id="btn-gen">✦ 生成答案藍圖報告</button><div style="font-size:10px;color:rgba(28,16,48,0.4);margin-top:8px;text-align:center;line-height:1.8">Claude 將根據牌卡內容與觀察記錄<br>自動生成冰山洞察與整合結論草稿</div></div><div id="gen-result" style="display:none"><div class="card"><div class="card-title"><span>📝</span>生成結果 — 可直接編輯</div><div id="insight-edits"></div><div class="div"></div><div class="fg"><div class="fl">整合結論（蓉蓉的話）</div><textarea class="fta" id="conclusion-edit" rows="8" style="min-height:150px" oninput="saveGenResult()"></textarea></div><button class="btn-primary" onclick="showTab('report')" style="margin-top:8px">✓ 查看玩家報告</button></div></div></div><!-- ⑥ 玩家報告 --><div class="screen" id="screen-report"><div class="card" style="padding:10px 12px"><div style="font-size:10px;color:rgba(28,16,48,0.5);margin-bottom:7px;letter-spacing:1px">選擇玩家報告</div><div class="player-tabs" id="rp-player-tabs"></div></div><div id="report-content" class="rp"></div></div></div><!-- /main --><div class="bottom-nav" id="bottom-nav-main"><button class="btn-sec" onclick="prevTab()" style="flex:1;padding:7px 8px;font-size:11px">← 上一步</button><button class="btn-sec" onclick="newSession()" style="flex:1;padding:7px 8px;font-size:11px">🔄 新場次</button><button class="btn-sec" onclick="nextTab()" style="flex:1;padding:7px 8px;font-size:11px">下一步 →</button></div><div class="bottom-nav" id="bottom-nav-game" style="display:none"><button class="btn-sec" onclick="openAddRound()" style="flex:2;padding:7px 8px;font-size:12px">＋ 記錄這一輪</button><button class="btn-pass" onclick="markPassed()" style="flex:1;padding:7px 8px;font-size:11px;width:auto">◎ 過關</button><button class="btn-sec" onclick="showTab('blueprint')" style="flex:1;padding:7px 8px;font-size:10px">藍圖 →</button></div><!-- 確認 Modal --><div class="modal-bg" id="modal-confirm"><div class="modal-box" style="max-height:40vh"><div class="modal-title"><span id="modal-confirm-title">確認</span></div><div id="modal-confirm-msg" style="font-size:13px;color:#262626;margin-bottom:16px;line-height:1.7"></div><div class="btn-row"><button class="btn-sec" onclick="closeModal('modal-confirm')">取消</button><button class="btn-primary" id="modal-confirm-ok">確認</button></div></div></div><!-- 過關 Modal --><div class="modal-bg" id="modal-pass"><div class="modal-box"><div class="modal-title">確認過關 <button class="modal-close" onclick="closeModal('modal-pass')">✕</button></div><div id="pass-player-name" style="font-family:'Noto Serif TC',serif;font-size:15px;color:var(--lilac);margin-bottom:6px"></div><div id="pass-stage-info" style="font-size:12px;color:rgba(28,16,48,0.5);margin-bottom:14px;line-height:1.7"></div><div class="fg"><div class="fl">過關階段</div><select class="fs" id="pass-stage"><option value="身">身</option><option value="心">心</option><option value="靈">靈</option><option value="全部完成">全部完成</option></select></div><div class="fg"><div class="fl">過關備註（選填）</div><textarea class="fta" id="pass-note" placeholder="過關時的觀察..." rows="2"></textarea></div><div class="btn-row"><button class="btn-sec" onclick="closeModal('modal-pass')">取消</button><button class="btn-pass" onclick="confirmPass()">確認過關</button></div></div></div><!-- 牌卡 Modal --><div class="modal-bg" id="modal-card"><div class="modal-box"><div class="modal-title"><span id="modal-card-title">選擇牌卡</span><button class="modal-close" onclick="closeModal('modal-card')">✕</button></div><div id="modal-card-list"></div></div></div><!-- 藍圖 Modal --><div class="modal-bg" id="modal-bp"><div class="modal-box"><div class="modal-title"><span id="modal-bp-title">選擇牌卡</span><button class="modal-close" onclick="closeModal('modal-bp')">✕</button></div><div id="modal-bp-list"></div></div></div><div class="loading" id="loading"><div class="spin"></div><div class="loading-txt">宇宙正在整合訊息<br>請稍候⋯</div></div><div class="toast" id="toast"></div><script>// ══ 牌卡資料 ══
+const ISSUE_CARDS=["限制性信念","小聰明投機","心碎的故事","我是對的","自我犧牲","暗中破壞","渴求認同","躊躇不前","母親關係","自我懷疑","自以為是","害怕失敗","內在誠信","缺乏連結","活在過去","未來焦慮","亂發脾氣","家族議題","完美主義","害怕失去","鑽牛角尖","父親關係","無價值感","自我封閉","自我懲罰","安全感","報復心","不滿足","信任感","孤立感","受害者","舊模式","自卑感","得失心","罪惡感","無力感","白日夢","拯救者","情緒化","人際","匱乏","接納","兩難","逃避","壓抑","背叛","控制","癮頭","放棄","失落","逃離","傲慢","嫉妒","突破","舊傷","期望","健康","恐懼","耐心","焦慮","批判","貪心","衝動","依賴","冷漠","雜音","抗拒","公平","贏"];
+const GUIDE_CARDS={
+fire:["熱情","拿回你的力量","幫助他人","要有決心","蛻變","好玩的人生","歡慶","等待","你是夠好的","不要猶豫","展現活力","冒險","邁出下一步"],
+earth:["物質享受","匱乏是假象","淨化你的空間","創意帶來財富","調整作息","內在本源力量","允許死去","修復身體","放下控制","接近大自然","謹慎規劃","療癒父親關係","領袖力"],
+wind:["奇蹟","關注內在","敞開對話","寬恕","慢下來","傾聽","重新考慮","信心","靈魂使命","蓄勢待發","新的開始","尋求幫助","學習"],
+water:["夥伴關係","接納","不忘初心","休息","療癒母親關係","療癒舊傷","尋求寬恕","釋放情緒阻塞","保持樂觀","進入五次元","聽從直覺","更高層次的親密關係","愛自己"]
+};
+const GUIDE_CONTENT={"熱情":"讓你的熱情引領你前進，當你充滿熱情地做某件事時，宇宙會為你開路。問問自己：什麼事情讓你的眼睛發光？","拿回你的力量":"你的力量從來沒有消失，只是暫時被遺忘了。現在是時候停止讓外在事物定義你的價值，重新站回屬於你的位置。","幫助他人":"服務他人是靈魂最深層的渴望之一。當你真心幫助他人時，你也在療癒自己。","要有決心":"猶豫不決是能量的消耗。選擇一個方向，然後全力以赴。宇宙喜歡決心，不喜歡搖擺。","蛻變":"你正站在一個轉化的門口。舊的自己需要死去，新的自己才能誕生。不要害怕這個過程，擁抱它。","好玩的人生":"生命不必那麼沉重。允許自己玩耍、嬉笑、輕鬆地活著。快樂不是目的地，而是你選擇的旅行方式。","歡慶":"停下來慶祝你走過的每一步。不要只顧著往前衝，回頭看看你走了多遠，你值得為自己鼓掌。","等待":"不是所有的行動都是向前衝。有時候，靜止本身就是一種行動。信任時機，讓事情自然成熟。","你是夠好的":"就是現在這個你，已經夠好了。不需要再更努力、再更完美、再更多。你本身就有價值。","不要猶豫":"你內心深處已經知道答案了。停止反覆詢問，停止等待完美時機，現在就行動。","展現活力":"讓你的生命力展現出來。你有光，不要把它藏起來。世界需要看見真實的你。","冒險":"生命在舒適區之外等著你。踏出那一步，去你從未去過的地方，做你從未做過的事。","邁出下一步":"你不需要看見整條路，只需要邁出下一步。每一個小步驟都在把你帶向你想去的地方。","物質享受":"允許自己享受物質世界的美好。接受豐盛，讓好的事物流入你的生命，這不是貪婪，是你值得的。","匱乏是假象":"你相信不夠的那個故事，是假的。宇宙是豐盛的，你也是。開始看見你已經擁有的一切。","淨化你的空間":"你的外在環境反映你的內在狀態。清理你的空間，放下不再服務你的事物，為新的能量騰出位置。","創意帶來財富":"你的創意是你最大的資產。不要壓抑它，讓它自由流動，財富會跟著創意的流動而來。","調整作息":"你的身體需要規律的節奏。調整你的睡眠、飲食、休息模式，讓身體回到自然的韻律。","內在本源力量":"在你的最深處，有一股永不枯竭的力量。當你感到疲憊時，回到那個中心，從那裡汲取力量。","允許死去":"讓舊有的模式、關係、或身份認同自然結束。不要抓住已經完成使命的事物，死亡是為了重生。","修復身體":"你的身體是你靈魂的家。它在對你說話，是時候聆聽了。給它需要的休息、滋養和關愛。","放下控制":"你無法控制一切，也不需要。放手，讓生命的智慧引導你。信任比控制更有力量。","接近大自然":"大自然有你需要的療癒。走出去，把腳放在土地上，讓自然的節奏重新校準你的能量。","謹慎規劃":"這個時候需要的是務實和周全的思考。不要只憑衝動，把你的夢想落地成具體的計劃。","療癒父親關係":"你與父親的關係，影響著你與權威、金錢和世界的關係。是時候去看看那裡還有什麼需要療癒。","領袖力":"你有帶領他人的能力和使命。停止躲在後面，站出來，你的聲音和方向是有人在等待的。","奇蹟":"奇蹟每天都在發生，只是你是否睜開眼睛看見。當你相信奇蹟，奇蹟就會找上門。","關注內在":"答案不在外面，停止向外尋找。安靜下來，向內看，你的靈魂一直知道答案。","敞開對話":"有些話需要被說出來。打開那扇一直關著的門，真誠的對話能帶來你想不到的療癒。","寬恕":"寬恕不是為了對方，是為了釋放你自己。你不需要忘記，但你可以不再讓傷痛定義你的現在。","慢下來":"你跑得太快了。慢下來，讓自己喘息，讓智慧有機會追上行動。速度不等於進步。","傾聽":"停止說話，開始聽。聽你的身體、你的直覺、聽那些你忽略已久的訊息。","重新考慮":"你對這件事的立場，也許需要重新審視。放下已有的結論，用全新的眼光再看一次。","信心":"即使現在看不見結果，也要相信你正在走的路。信心是在黑暗中繼續走的能力。","靈魂使命":"你來到這個世界有你的使命。停下來問問自己：我真正被呼召去做的是什麼？","蓄勢待發":"現在不是行動的時候，而是積蓄能量的時候。安靜地準備，機會來臨時你會知道。","新的開始":"舊的篇章已經結束了。允許自己開始新的一頁，不要帶著太多行李踏上新的旅程。","尋求幫助":"你不必獨自承擔一切。開口尋求幫助不是軟弱，是智慧。允許他人進來，允許自己被支持。","學習":"人生每一個經歷都是教導。這個挑戰在教你什麼？帶著學生的謙遜去面對每一刻。","夥伴關係":"你不是孤單的。尋找那些能與你並肩同行的人，真正的夥伴關係能讓你走得更遠、更深。","接納":"對自己、對他人、對現在這一刻的完全接納。不是放棄，而是從真實的地方開始。","不忘初心":"回到最初的動機和夢想。在所有的複雜和疲憊之下，你最初想要的是什麼？","休息":"你需要休息。不是懶惰，是充電。允許自己停下來，什麼都不做。這也是一種生產力。","療癒母親關係":"你與母親的關係，影響著你如何愛自己、如何接受滋養。看看那裡還有什麼需要療癒的。","療癒舊傷":"過去的傷口還在影響你的現在。是時候溫柔地去看那個受傷的自己，給它需要的愛。","尋求寬恕":"你心裡有一些愧疚需要被釋放。鼓起勇氣去面對，道歉或原諒自己，讓那份重量放下。","釋放情緒阻塞":"你的情緒被卡住了。讓那些壓抑的感受有出口，哭泣、表達、移動——讓情緒流動起來。","保持樂觀":"在這一切之中，選擇看見光。樂觀不是否認困難，而是相信最終會好的那份信念。","進入五次元":"你正在被邀請進入更高的意識振動。放下3D的限制性思維，允許自己接受更大的可能性。","聽從直覺":"那個安靜的小聲音一直在告訴你什麼。停止用邏輯否定它，開始信任你內在的智慧。","更高層次的親密關係":"你渴望的不只是表面的連結，而是靈魂層面的深度親密。允許自己被真正看見，也真正看見他人。","愛自己":"一切療癒的根本是愛自己。不是自戀，而是給自己你一直在等待別人給你的那份溫柔。"};
+const TAROT_EXPLORE=["愚者","魔術師","女祭司","皇后","皇帝","教皇","戀人","戰車","力量","隱者","命運之輪","正義","倒吊人","死神","節制","惡魔","高塔","星星","月亮","太陽","審判","世界"];
+const TAROT_TRUTH=["權杖A","權杖2","權杖3","權杖4","權杖5","權杖6","權杖7","權杖8","權杖9","權杖10","權杖侍者","權杖騎士","權杖王后","權杖國王","聖杯A","聖杯2","聖杯3","聖杯4","聖杯5","聖杯6","聖杯7","聖杯8","聖杯9","聖杯10","聖杯侍者","聖杯騎士","聖杯王后","聖杯國王","寶劍A","寶劍2","寶劍3","寶劍4","寶劍5","寶劍6","寶劍7","寶劍8","寶劍9","寶劍10","寶劍侍者","寶劍騎士","寶劍王后","寶劍國王","錢幣A","錢幣2","錢幣3","錢幣4","錢幣5","錢幣6","錢幣7","錢幣8","錢幣9","錢幣10","錢幣侍者","錢幣騎士","錢幣王后","錢幣國王"];
+const ALL_GUIDE=[...GUIDE_CARDS.fire,...GUIDE_CARDS.earth,...GUIDE_CARDS.wind,...GUIDE_CARDS.water];
+const TRUTH_GROUPED=[
+{group:'Ⅰ 權杖',items:["權杖A","權杖2","權杖3","權杖4","權杖5","權杖6","權杖7","權杖8","權杖9","權杖10","權杖侍者","權杖騎士","權杖王后","權杖國王"]},
+{group:'Ⅱ 聖杯',items:["聖杯A","聖杯2","聖杯3","聖杯4","聖杯5","聖杯6","聖杯7","聖杯8","聖杯9","聖杯10","聖杯侍者","聖杯騎士","聖杯王后","聖杯國王"]},
+{group:'Ⅲ 寶劍',items:["寶劍A","寶劍2","寶劍3","寶劍4","寶劍5","寶劍6","寶劍7","寶劍8","寶劍9","寶劍10","寶劍侍者","寶劍騎士","寶劍王后","寶劍國王"]},
+{group:'Ⅳ 錢幣',items:["錢幣A","錢幣2","錢幣3","錢幣4","錢幣5","錢幣6","錢幣7","錢幣8","錢幣9","錢幣10","錢幣侍者","錢幣騎士","錢幣王后","錢幣國王"]}
+];
+function getGuideEl(n){for(const[e,c]of Object.entries(GUIDE_CARDS))if(c.includes(n))return e;return'wind';}
+// ══ 星座 ══
+function getZodiac(bday){
+if(!bday)return{sign:'',element:'',elClass:'',raw:''};
+const d=new Date(bday+'T12:00:00'),m=d.getMonth()+1,day=d.getDate();
+const z=[{s:'摩羯座',e:'earth'},{s:'水瓶座',e:'wind'},{s:'雙魚座',e:'water'},{s:'牡羊座',e:'fire'},{s:'金牛座',e:'earth'},{s:'雙子座',e:'wind'},{s:'巨蟹座',e:'water'},{s:'獅子座',e:'fire'},{s:'處女座',e:'earth'},{s:'天秤座',e:'wind'},{s:'天蠍座',e:'water'},{s:'射手座',e:'fire'},{s:'摩羯座',e:'earth'}];
+const cuts=[19,18,20,19,20,21,22,22,22,23,22,21];
+const idx=day<=cuts[m-1]?m-1:m;
+const elLabel={fire:'火象',water:'水象',wind:'風象',earth:'土象'};
+const ecls={fire:'tag-fire',water:'tag-water',wind:'tag-wind',earth:'tag-earth'};
+return{sign:z[idx].s,element:elLabel[z[idx].e],elClass:ecls[z[idx].e],raw:z[idx].e};
+}
+// ══ 狀態 ══
+const defSession=()=>({no:'',date:'',time:'',durPlan:'',durReal:'',mode:'線下',count:4,venue:'',src:'朋友',srcOther:'',note:''});
+const defPlayer=i=>({id:i,name:'',bday:'',question:'',order:i+1,sign:'',element:'',rawElement:'',rounds:[],passed:[],currentStage:'身',blueprint:{身:{issue:'',tarot:'',tarotPos:'up',guide:''},心:{issue:'',tarot:'',tarotPos:'up',guide:''},靈:{issue:'',tarot:'',tarotPos:'up',guide:''}},insights:{身:'',心:'',靈:''},conclusion:''});
+let S={session:defSession(),players:Array.from({length:4},(_,i)=>defPlayer(i))};
+let currentTab='session',curGame=0,curBp=0,curGen=0,curRp=0;
+let pendingRound={type:'',cards:[],obs:''};
+let bpCtx={pi:0,stage:'',slot:''};
+let modalPos='up',bpTarotPos='up';
+// ══ 儲存 ══
+function save(){readSF();localStorage.setItem('lj_v3',JSON.stringify(S));}
+function load(){const r=localStorage.getItem('lj_v3');if(r)try{S={...S,...JSON.parse(r)};}catch(e){}}
+function readSF(){
+const g=id=>document.getElementById(id);
+['no','date','time','dur-plan','dur-real','mode','venue','note'].forEach(k=>{const e=g('s-'+k);if(e)S.session[k.replace('-','')]=e.value||e.value;});
+S.session.durPlan=g('s-dur-plan')?.value||'';
+S.session.durReal=g('s-dur-real')?.value||'';
+S.session.no=g('s-no')?.value||'';
+S.session.date=g('s-date')?.value||'';
+S.session.time=g('s-time')?.value||'';
+S.session.mode=g('s-mode')?.value||'線下';
+S.session.venue=g('s-venue')?.value||'';
+S.session.src=g('s-src')?.value||'朋友';
+S.session.srcOther=g('s-src-other')?.value||'';
+S.session.note=g('s-note')?.value||'';
+}
+function v(id){const e=document.getElementById(id);return e?e.value:'';}
+function sv(id,val){const e=document.getElementById(id);if(e&&val!=null)e.value=val;}
+// ══ 導航 ══
+const TAB_ORDER=['session','players','game','blueprint','generate','report'];
+function showTab(tab){
+save(); currentTab=tab;
+document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+document.getElementById('screen-'+tab).classList.add('active');
+document.querySelectorAll('.nav-tab').forEach(t=>t.classList.toggle('active',t.dataset.tab===tab));
+if(tab==='players')renderPlayers();
+if(tab==='game')renderGame();
+if(tab==='blueprint')renderBp();
+if(tab==='generate')renderGen();
+if(tab==='report')renderReport();
+const isGame=tab==='game';
+document.getElementById('bottom-nav-main').style.display=isGame?'none':'flex';
+document.getElementById('bottom-nav-game').style.display=isGame?'flex':'none';
+document.querySelector('.main').scrollTop=0;
+}
+function prevTab(){const i=TAB_ORDER.indexOf(currentTab);if(i>0)showTab(TAB_ORDER[i-1]);}
+function nextTab(){const i=TAB_ORDER.indexOf(currentTab);if(i<TAB_ORDER.length-1)showTab(TAB_ORDER[i+1]);}
+function toggleSrcOther(){document.getElementById('s-src-other').style.display=v('s-src')==='其他'?'block':'none';}
+function syncPlayerCount(){
+const n=parseInt(v('s-count'));S.session.count=n;
+while(S.players.length<n)S.players.push(defPlayer(S.players.length));
+save();if(currentTab==='players')renderPlayers();
+}
+function restoreSF(){
+sv('s-no',S.session.no);sv('s-date',S.session.date);sv('s-time',S.session.time);
+sv('s-dur-plan',S.session.durPlan);sv('s-dur-real',S.session.durReal);
+sv('s-mode',S.session.mode);sv('s-count',S.session.count);
+sv('s-venue',S.session.venue);sv('s-src',S.session.src);
+sv('s-src-other',S.session.srcOther);sv('s-note',S.session.note);
+toggleSrcOther();
+}
+// ══ 玩家建立 ══
+function renderPlayers(){
+const n=S.session.count||4;
+document.getElementById('players-list').innerHTML=Array.from({length:n},(_,i)=>{
+const p=S.players[i]||defPlayer(i);
+const z=getZodiac(p.bday);
+return`<div class="card" style="margin-bottom:10px">
+<div class="card-title" style="color:#3a0080"><span>👤</span>玩家 ${i+1}</div>
+<div class="row2">
+<div class="fg"><div class="fl">暱稱</div><input class="fi" id="p${i}-name" value="${p.name||''}" placeholder="暱稱" oninput="upP(${i},'name',this.value)"></div>
+<div class="fg"><div class="fl">出發順序</div>
+<select class="fs" id="p${i}-order" onchange="upP(${i},'order',this.value)">
+${Array.from({length:n},(_,j)=>`<option value="${j+1}" ${p.order==j+1?'selected':''}>${j+1}</option>`).join('')}
+</select>
+</div>
+</div>
+<div class="fg"><div class="fl">生日</div>
+<input class="fi" type="date" id="p${i}-bday" value="${p.bday||''}" oninput="upBday(${i},this.value)">
+<div id="p${i}-zodiac" style="margin-top:5px">${z.sign?`<span class="auto-tag ${z.elClass}">${z.sign}｜${z.element}</span>`:''}</div>
+</div>
+<div class="fg"><div class="fl">帶入的問題</div>
+<textarea class="fta" id="p${i}-q" rows="2" oninput="upP(${i},'question',this.value)">${p.question||''}</textarea>
+</div>
+</div>`;
+}).join('');
+}
+function upP(i,f,v){if(!S.players[i])S.players[i]=defPlayer(i);S.players[i][f]=v;save();}
+function upBday(i,val){
+S.players[i].bday=val;
+const z=getZodiac(val);
+S.players[i].sign=z.sign;S.players[i].element=z.element;S.players[i].rawElement=z.raw;
+const el=document.getElementById(`p${i}-zodiac`);
+if(el)el.innerHTML=z.sign?`<span class="auto-tag ${z.elClass}">${z.sign}｜${z.element}</span>`:'';
+save();
+}
+// ══ 遊戲記錄 ══
+function renderGame(){renderPTabs('game-player-tabs',curGame,selGame);renderCurPlayer();}
+function selGame(i){curGame=i;renderGame();document.getElementById('add-round-panel').style.display='none';}
+function renderCurPlayer(){
+const p=S.players[curGame];
+if(!p){document.getElementById('current-player-card').innerHTML='<div class="empty">尚無玩家資料</div>';return;}
+const z=p.sign?`<span class="auto-tag ${getElCls(p.rawElement)}" style="margin-left:6px">${p.sign}｜${p.element}</span>`:'';
+const passed=p.passed.map(ps=>`<span style="font-size:10px;padding:2px 7px;border-radius:10px;background:rgba(45,106,79,0.12);color:#1a5a1a;margin-left:4px">✓${ps.stage}</span>`).join('');
+const stL=p.currentStage==='完成'?'全部完成':'目前：'+p.currentStage;
+document.getElementById('current-player-card').innerHTML=`
+<div class="player-header"><div>
+<div class="player-name-big">${p.name||'玩家'+(curGame+1)}${z}</div>
+<div class="player-meta">順序 ${p.order} ｜ <span style="color:var(--lilac)">${stL}</span> ｜ ${p.rounds.length}輪${passed}</div>
+</div></div>
+${p.question?`<div style="font-size:12px;color:rgba(28,16,48,0.5);line-height:1.7;margin-bottom:8px;padding:8px 10px;background:rgba(155,114,207,0.06);border-radius:7px">「${p.question}」</div>`:''}`;
+renderRounds();
+}
+function getElCls(r){return{fire:'tag-fire',water:'tag-water',wind:'tag-wind',earth:'tag-earth'}[r]||'';}
+function renderRounds(){
+const p=S.players[curGame];
+const el=document.getElementById('rounds-list');
+if(!p||!p.rounds.length){el.innerHTML='<div class="empty">還沒有記錄</div>';return;}
+const cfg={身:{bg:'#deeeff',border:'rgba(100,160,210,0.35)',tc:'#0a3a50'},心:{bg:'#fde8f4',border:'rgba(200,100,140,0.35)',tc:'#7a1040'},靈:{bg:'#efe8fd',border:'rgba(123,90,176,0.35)',tc:'#3a0080'}};
+const allS=[...new Set(p.rounds.map(r=>r.stage||'身'))];
+p.passed.forEach(ps=>{if(ps.stage!=='全部完成'&&!allS.includes(ps.stage))allS.push(ps.stage);});
+const ord=['身','心','靈'].filter(s=>allS.includes(s)||p.rounds.some(r=>(r.stage||'身')===s));
+if(!window._col)window._col={};
+let out='';
+ord.forEach(stage=>{
+const c=cfg[stage]||cfg['靈'];
+const sr=p.rounds.filter(r=>(r.stage||'身')===stage);
+const pi=p.passed.find(ps=>ps.stage===stage);
+const cid='c-'+curGame+'-'+stage;
+const isC=!!window._col[cid];
+out+=`<div style="margin-bottom:10px;border-radius:9px;overflow:hidden;border:1px solid ${c.border}">
+<div style="display:flex;align-items:center;gap:8px;padding:8px 10px;background:${c.bg};cursor:pointer" onclick="togCol('${cid}')">
+<span style="font-family:'Noto Serif TC',serif;font-size:14px;font-weight:700;color:${c.tc}">${stage}</span>
+<span style="font-size:11px;color:#262626">${sr.length}輪</span>
+${pi?`<span style="font-size:10px;color:#1a5a1a;background:rgba(45,106,79,0.15);padding:2px 8px;border-radius:10px;font-weight:600">✓過關 ${pi.time||''}</span>
+<button onclick="event.stopPropagation();cancelPassP(${curGame},'${stage}')" style="font-size:10px;padding:2px 7px;border-radius:8px;border:1px solid rgba(192,57,43,0.4);background:rgba(255,220,210,0.6);color:#7a1a0a;cursor:pointer">取消過關</button>`:''}
+<span style="margin-left:auto;font-size:12px;color:#262626">${isC?'▶':'▼'}</span>
+</div>
+${isC?'':`<div style="padding:8px;background:#fff">
+${sr.length?sr.map((r,si)=>{
+const gi=p.rounds.indexOf(r);
+return`<div class="round-item">
+<div class="round-num">${si+1}</div>
+<div class="round-body">
+<div class="round-player">${tLabel(r)}${r.patronRole==='helper'&&r.targetPlayer!=null?' → '+(S.players[r.targetPlayer]?.name||'玩家'+(r.targetPlayer+1)):''}${r.patronRole==='helped'&&r.helperFrom!=null?' ← '+(S.players[r.helperFrom]?.name||'玩家'+(r.helperFrom+1)):''}${r.wheelRole==='trigger'&&r.wheelWinner!=null?' → '+(S.players[r.wheelWinner]?.name||'玩家'+(r.wheelWinner+1)):''}${r.wheelRole==='received'&&r.wheelFrom!=null?' ← '+(S.players[r.wheelFrom]?.name||'玩家'+(r.wheelFrom+1)):''}</div>
+<div class="round-card-row">${r.cards.map(c=>chip(c,r.type,r)).join('')}</div>
+${r.obs?`<div class="round-obs">${r.obs}</div>`:''}
+</div>
+<button class="round-delete" onclick="delRound(${curGame},${gi})">✕</button>
+</div>`;}).join(''):'<div style="font-size:11px;color:rgba(28,16,48,0.35);padding:6px 8px">尚無記錄</div>'}
+</div>`}
+</div>`;
+});
+el.innerHTML=out||'<div class="empty">還沒有記錄</div>';
+}
+function togCol(id){if(!window._col)window._col={};window._col[id]=!window._col[id];renderRounds();}
+function cancelPassP(pi,stage){showConfirm('取消過關','確定取消「'+stage+'」的過關記錄？',()=>{
+const p=S.players[pi];
+p.passed=p.passed.filter(ps=>ps.stage!==stage);
+if(stage==='心'&&p.currentStage==='靈')p.currentStage='心';
+else if(stage==='身'&&(p.currentStage==='心'||p.currentStage==='靈'))p.currentStage='身';
+if(window._col)window._col['c-'+pi+'-'+stage]=false;
+save();renderRounds();renderCurPlayer();toast('已取消過關');
+});}
+function tLabel(r){
+const t=r.type;
+if(t==='release')return r.releaseType==='grid'?'🪨放下卡（格子）':'🪨主動放下';
+if(t==='patron'){if(r.patronRole==='helper')return'💎貴人卡（幫助別人）';if(r.patronRole==='helped')return'💎貴人卡（被幫助）';}
+if(t==='wheel'){if(r.wheelRole==='trigger')return'☯命運之輪（觸發）';if(r.wheelRole==='received')return'☯命運之輪（獲得）';}
+return{issue:'🎭議題卡',guide:'🌠指引卡',explore:'🔮探索卡',truth:'👁️‍🗨️真相卡',patron:'💎貴人卡',release:'🪨放下卡',wheel:'☯命運之輪',golden:'⭐黃金格'}[t]||t;
+}
+function chip(c,type,r){
+const isRev=c.endsWith(' 逆');
+const cn=c.replace(/ (正|逆)$/,'');
+const pos=isRev?'逆':'正';
+if(type==='issue')return`<span class="card-chip cc-issue">🎭 ${cn}</span>`;
+if(type==='guide'){const el=getGuideEl(cn);const cls={fire:'cc-guide-fire',earth:'cc-guide-earth',wind:'cc-guide-wind',water:'cc-guide-water'}[el]||'cc-guide-wind';return`<span class="card-chip ${cls}">🌠 ${cn}</span>`;}
+if(type==='explore')return`<span class="card-chip ${isRev?'cc-explore-rev':'cc-explore-up'}">🔮 ${cn} ${pos}</span>`;
+if(type==='truth')return`<span class="card-chip ${isRev?'cc-truth-rev':'cc-truth-up'}">👁️‍🗨️ ${cn} ${pos}</span>`;
+if(type==='release'){if(r?.releaseType==='grid')return`<span class="card-chip cc-release-grid">🪨放下</span>`;return`<span class="card-chip cc-release-vol">🪨 ${cn}</span>`;}
+if(type==='patron'){const iT=TAROT_EXPLORE.includes(cn)||TAROT_TRUTH.includes(cn);if(iT){const isE=TAROT_EXPLORE.includes(cn);return`<span class="card-chip ${isRev?(isE?'cc-explore-rev':'cc-truth-rev'):(isE?'cc-explore-up':'cc-truth-up')}">💎 ${cn} ${pos}</span>`;}if(ISSUE_CARDS.includes(cn))return`<span class="card-chip cc-patron">💎🎭 ${cn}</span>`;if(ALL_GUIDE.includes(cn))return`<span class="card-chip cc-patron">💎🌠 ${cn}</span>`;return`<span class="card-chip cc-patron">💎 ${cn}</span>`;}
+const iT2=TAROT_EXPLORE.includes(cn)||TAROT_TRUTH.includes(cn);if(iT2){const isE=TAROT_EXPLORE.includes(cn);return`<span class="card-chip ${isRev?(isE?'cc-explore-rev':'cc-truth-rev'):(isE?'cc-explore-up':'cc-truth-up')}">${isE?'🔮':'👁️‍🗨️'} ${cn} ${pos}</span>`;}
+if(ISSUE_CARDS.includes(cn))return`<span class="card-chip cc-issue">🎭 ${cn}</span>`;
+if(ALL_GUIDE.includes(cn)){const el=getGuideEl(cn);const cls={fire:'cc-guide-fire',earth:'cc-guide-earth',wind:'cc-guide-wind',water:'cc-guide-water'}[el]||'cc-guide-wind';return`<span class="card-chip ${cls}">🌠 ${cn}</span>`;}
+return`<span class="card-chip cc-special">${cn}</span>`;
+}
+function delRound(pi,ri){S.players[pi].rounds.splice(ri,1);save();renderRounds();toast('已刪除');}
+// ══ 新增輪次 ══
+function openAddRound(){
+pendingRound={type:'',cards:[],obs:''};
+document.getElementById('add-round-panel').style.display='block';
+document.getElementById('grid-type').querySelectorAll('.type-btn').forEach(b=>b.classList.remove('sel'));
+document.getElementById('card-select-area').innerHTML='';
+document.getElementById('round-obs').value='';
+document.getElementById('add-round-panel').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function cancelRound(){document.getElementById('add-round-panel').style.display='none';}
+function selectType(t){
+pendingRound.type=t;pendingRound.cards=[];
+document.getElementById('grid-type').querySelectorAll('.type-btn').forEach(b=>b.classList.toggle('sel',b.dataset.type===t));
+renderCSA(t);
+}
+function renderCSA(type){
+const area=document.getElementById('card-select-area');
+const plist=()=>S.players.slice(0,S.session.count||4).map((p,i)=>`<option value="${i}">${p.name||'玩家'+(i+1)}</option>`).join('');
+if(type==='patron'){
+area.innerHTML=`<div class="fg" style="margin-top:8px"><div class="fl">貴人卡情況</div>
+<div style="display:flex;gap:8px;margin-bottom:10px">
+<button id="pr-helper" onclick="selPR('helper')" style="flex:1;padding:9px 8px;border-radius:8px;border:1px solid rgba(155,114,207,0.3);background:#faf7fd;color:#262626;font-size:12px;cursor:pointer">💎走到格子（幫助別人）</button>
+<button id="pr-helped" onclick="selPR('helped')" style="flex:1;padding:9px 8px;border-radius:8px;border:1px solid rgba(155,114,207,0.3);background:#faf7fd;color:#262626;font-size:12px;cursor:pointer">🎁被幫助（補記）</button>
+</div><div id="pr-area"></div></div>`;
+} else if(type==='release'){
+area.innerHTML=`<div class="fg" style="margin-top:8px"><div class="fl">放下情況</div>
+<div style="display:flex;gap:8px;margin-bottom:10px">
+<button id="rel-grid" onclick="selRel('grid')" style="flex:1;padding:9px 8px;border-radius:8px;border:1px solid rgba(155,114,207,0.3);background:#faf7fd;color:#262626;font-size:12px;cursor:pointer">🕊走到放下卡格子</button>
+<button id="rel-vol" onclick="selRel('voluntary')" style="flex:1;padding:9px 8px;border-radius:8px;border:1px solid rgba(155,114,207,0.3);background:#faf7fd;color:#262626;font-size:12px;cursor:pointer">✋主動放下</button>
+</div><div id="rel-area"></div></div>`;
+} else if(type==='wheel'){
+area.innerHTML=`<div class="fg" style="margin-top:8px"><div class="fl">命運之輪情況</div>
+<div style="display:flex;gap:8px;margin-bottom:10px">
+<button id="wr-trigger" onclick="selWR('trigger')" style="flex:1;padding:9px 8px;border-radius:8px;border:1px solid rgba(155,114,207,0.3);background:#faf7fd;color:#262626;font-size:12px;cursor:pointer">☯走到格子（觸發）</button>
+<button id="wr-received" onclick="selWR('received')" style="flex:1;padding:9px 8px;border-radius:8px;border:1px solid rgba(155,114,207,0.3);background:#faf7fd;color:#262626;font-size:12px;cursor:pointer">🎁獲得卡片（補記）</button>
+</div><div id="wr-area"></div></div>`;
+} else if(type==='golden'){
+area.innerHTML=`<div class="fg" style="margin-top:8px"><div class="fl">任選一張牌卡</div><button class="btn-sec" onclick="openCM('golden')" id="golden-btn" style="width:100%;text-align:left">點擊選擇牌卡…</button></div>`;
+} else {
+area.innerHTML=`<div class="fg" style="margin-top:8px"><div class="fl">${tLabel({type})}名稱</div><button class="btn-sec" onclick="openCM('${type}')" id="normal-btn" style="width:100%;text-align:left">點擊選擇牌卡（內含正逆位）…</button></div>`;
+}
+}
+function setBtn(id,active){const b=document.getElementById(id);if(b){b.style.background=active?'rgba(230,220,248,0.85)':'#faf7fd';b.style.borderColor=active?'rgba(123,90,176,0.6)':'rgba(155,114,207,0.3)';b.style.fontWeight=active?'600':'400';}}
+function selPR(role){
+pendingRound.patronRole=role;pendingRound.cards=[];
+setBtn('pr-helper',role==='helper');setBtn('pr-helped',role==='helped');
+const plist=()=>S.players.slice(0,S.session.count||4).map((p,i)=>`<option value="${i}">${p.name||'玩家'+(i+1)}</option>`).join('');
+const plistEx=()=>S.players.slice(0,S.session.count||4).map((p,i)=>i!==curGame?`<option value="${i}">${p.name||'玩家'+(i+1)}</option>`:'').join('');
+const ptypes=`<div class="grid-type" id="pt-sel">
+<div class="type-btn" data-pt="issue" onclick="selPT('issue')"><span class="t-ico">🎭</span>議題卡</div>
+<div class="type-btn" data-pt="guide" onclick="selPT('guide')"><span class="t-ico">🌠</span>指引卡</div>
+<div class="type-btn" data-pt="explore" onclick="selPT('explore')"><span class="t-ico">🔮</span>探索卡</div>
+<div class="type-btn" data-pt="truth" onclick="selPT('truth')"><span class="t-ico">👁️‍🗨️</span>真相卡</div>
+<div class="type-btn" data-pt="release" onclick="selPT('release')"><span class="t-ico">🪨</span>放下卡</div>
+<div class="type-btn" data-pt="wheel" onclick="selPT('wheel')"><span class="t-ico">☯</span>命運之輪</div>
+</div>`;
+const area=document.getElementById('pr-area');
+if(role==='helper'){area.innerHTML=`<div class="fg"><div class="fl">骰子牌種</div>${ptypes}</div><div id="pt-pick" style="margin-top:6px"></div><div class="fg" style="margin-top:8px"><div class="fl">給哪位玩家</div><select class="fs" id="pt-target">${plist()}</select></div>`;}
+else{area.innerHTML=`<div class="fg"><div class="fl">哪位玩家幫助了我</div><select class="fs" id="pt-helper-from">${plistEx()}</select></div><div class="fg" style="margin-top:6px"><div class="fl">得到的牌卡</div><div class="grid-type" id="pt-sel"><div class="type-btn" data-pt="issue" onclick="selPT('issue')"><span class="t-ico">🎭</span>議題卡</div><div class="type-btn" data-pt="guide" onclick="selPT('guide')"><span class="t-ico">🌠</span>指引卡</div><div class="type-btn" data-pt="explore" onclick="selPT('explore')"><span class="t-ico">🔮</span>探索卡</div><div class="type-btn" data-pt="truth" onclick="selPT('truth')"><span class="t-ico">👁️‍🗨️</span>真相卡</div><div class="type-btn" data-pt="release" onclick="selPT('release')"><span class="t-ico">🪨</span>放下卡</div></div></div><div id="pt-pick" style="margin-top:6px"></div>`;}
+}
+function selPT(pt){
+document.getElementById('pt-sel')?.querySelectorAll('.type-btn').forEach(b=>b.classList.toggle('sel',b.dataset.pt===pt));
+pendingRound.patronType=pt;pendingRound.cards=[];
+const pick=document.getElementById('pt-pick');
+if(pt==='release'){pick.innerHTML=`<div style="font-size:11px;color:rgba(28,16,48,0.6);padding:8px 10px;background:rgba(155,114,207,0.06);border-radius:7px">✓給玩家一張放下卡（不需記錄牌名）</div>`;pendingRound.cards=['（放下卡）'];}
+else if(pt==='wheel'){pick.innerHTML=`<div class="fg"><div class="fl">命運之輪牌卡</div><button class="btn-sec" onclick="openCM('wheel','patron')" id="pt-specific-btn" style="width:100%;text-align:left">點擊選擇牌卡…</button></div><div class="fg" style="margin-top:6px"><div class="fl">骰子最大者</div><select class="fs" id="pt-wheel-winner">${S.players.slice(0,S.session.count||4).map((p,i)=>`<option value="${i}">${p.name||'玩家'+(i+1)}</option>`).join('')}</select></div>`;}
+else{pick.innerHTML=`<div class="fg"><div class="fl">${{explore:'探索卡',truth:'真相卡',guide:'指引卡',issue:'議題卡'}[pt]||pt}</div><button class="btn-sec" onclick="openCM('${pt}','patron')" id="pt-specific-btn" style="width:100%;text-align:left">點擊選擇牌卡…</button></div>`;}
+}
+function selRel(t){
+pendingRound.releaseType=t;setBtn('rel-grid',t==='grid');setBtn('rel-vol',t==='voluntary');
+const a=document.getElementById('rel-area');
+if(t==='grid'){a.innerHTML=`<div style="font-size:11px;color:rgba(28,16,48,0.6);padding:8px 10px;background:rgba(155,114,207,0.06);border-radius:7px">✓走到格子，拿一張放下卡</div>`;pendingRound.cards=['（放下卡格子）'];}
+else{a.innerHTML=`<div class="fg"><div class="fl">放下手上哪張牌</div><button class="btn-sec" onclick="openCM('release','rel-pick')" id="rel-pick-btn" style="width:100%;text-align:left">點擊選擇牌卡…</button></div>`;}
+}
+function selWR(role){
+pendingRound.wheelRole=role;pendingRound.cards=[];
+setBtn('wr-trigger',role==='trigger');setBtn('wr-received',role==='received');
+const plist=()=>S.players.slice(0,S.session.count||4).map((p,i)=>`<option value="${i}">${p.name||'玩家'+(i+1)}</option>`).join('');
+const plistEx=()=>S.players.slice(0,S.session.count||4).map((p,i)=>i!==curGame?`<option value="${i}">${p.name||'玩家'+(i+1)}</option>`:'').join('');
+const a=document.getElementById('wr-area');
+if(role==='trigger'){a.innerHTML=`<div class="fg"><div class="fl">選擇牌卡</div><button class="btn-sec" onclick="openCM('wheel')" id="wheel-btn" style="width:100%;text-align:left">點擊選擇牌卡…</button></div><div class="fg" style="margin-top:6px"><div class="fl">骰子最大者（獲得牌卡）</div><select class="fs" id="wheel-winner"><option value="">— 選擇玩家 —</option>${plist()}</select></div>`;}
+else{a.innerHTML=`<div class="fg"><div class="fl">誰的命運之輪（觸發者）</div><select class="fs" id="wheel-from">${plistEx()}</select></div><div class="fg" style="margin-top:6px"><div class="fl">得到的牌卡</div><button class="btn-sec" onclick="openCM('wheel')" id="wheel-btn" style="width:100%;text-align:left">點擊選擇牌卡…</button></div>`;}
+}
+// ══ 牌卡 Modal ══
+function openCM(type,ctx){
+let cards=[],title='選擇牌卡';
+const needsPos=(type==='explore'||type==='truth'||type==='wheel'||type==='golden')&&ctx!=='bp-no-pos';
+const posBar=needsPos?`<div style="display:flex;gap:8px;margin-bottom:12px"><button id="mp-up" onclick="setMP('up')" style="flex:1;padding:8px;border-radius:8px;border:1px solid rgba(45,106,79,0.4);background:rgba(45,106,79,0.2);color:#1a4a30;font-size:12px;cursor:pointer">正位</button><button id="mp-rev" onclick="setMP('rev')" style="flex:1;padding:8px;border-radius:8px;border:1px solid rgba(155,114,207,0.25);background:#faf7fd;color:rgba(28,16,48,0.6);font-size:12px;cursor:pointer">逆位</button></div>`:'';
+modalPos='up';
+if(type==='issue'){cards=ISSUE_CARDS;title='議題卡';}
+else if(type==='guide'){title='指引卡';cards=[{group:'🔴火',items:GUIDE_CARDS.fire},{group:'🟢土',items:GUIDE_CARDS.earth},{group:'🟣風',items:GUIDE_CARDS.wind},{group:'🔵水',items:GUIDE_CARDS.water}];}
+else if(type==='explore'){cards=TAROT_EXPLORE;title='探索卡';}
+else if(type==='truth'){title='真相卡';cards=TRUTH_GROUPED;}
+else if(type==='wheel'||type==='golden'){title='任選牌卡';cards=[{group:'議題卡',items:ISSUE_CARDS},{group:'🔴火指引',items:GUIDE_CARDS.fire},{group:'🟢土指引',items:GUIDE_CARDS.earth},{group:'🟣風指引',items:GUIDE_CARDS.wind},{group:'🔵水指引',items:GUIDE_CARDS.water},{group:'探索卡',items:TAROT_EXPLORE},...TRUTH_GROUPED];}
+else if(type==='release'){title='選擇放下的牌';cards=[{group:'議題卡',items:ISSUE_CARDS},{group:'🔴火指引',items:GUIDE_CARDS.fire},{group:'🟢土指引',items:GUIDE_CARDS.earth},{group:'🟣風指引',items:GUIDE_CARDS.wind},{group:'🔵水指引',items:GUIDE_CARDS.water},{group:'探索卡',items:TAROT_EXPLORE},...TRUTH_GROUPED];}
+document.getElementById('modal-card-title').textContent=title;
+const list=document.getElementById('modal-card-list');
+const mkBtn=c=>`<button class="btn-sec" onclick="pickC('${c.replace(/'/g,"\\'")}','${type}','${ctx||''}')" style="padding:7px 11px;font-size:12px">${c}</button>`;
+if(Array.isArray(cards)&&typeof cards[0]==='string'){
+list.innerHTML=posBar+`<div style="display:flex;flex-wrap:wrap;gap:7px">${cards.map(mkBtn).join('')}</div>`;
+}else{
+list.innerHTML=posBar+cards.map(g=>`<div style="margin-bottom:12px"><div style="font-size:11px;color:rgba(28,16,48,0.6);margin-bottom:6px;font-weight:600">${g.group}</div><div style="display:flex;flex-wrap:wrap;gap:6px">${g.items.map(mkBtn).join('')}</div></div>`).join('');
+}
+document.getElementById('modal-card').classList.add('show');
+}
+function setMP(pos){
+modalPos=pos;
+const up=document.getElementById('mp-up'),rev=document.getElementById('mp-rev');
+if(up){up.style.background=pos==='up'?'rgba(45,106,79,0.2)':'#faf7fd';up.style.borderColor=pos==='up'?'rgba(45,106,79,0.4)':'rgba(155,114,207,0.25)';up.style.color=pos==='up'?'#1a4a30':'rgba(28,16,48,0.6)';}
+if(rev){rev.style.background=pos==='rev'?'rgba(192,57,43,0.15)':'#faf7fd';rev.style.borderColor=pos==='rev'?'rgba(192,57,43,0.4)':'rgba(155,114,207,0.25)';rev.style.color=pos==='rev'?'#7a1a0a':'rgba(28,16,48,0.6)';}
+}
+function pickC(card,type,ctx){
+const pos=modalPos;
+closeModal('modal-card');
+const isTarot=TAROT_EXPLORE.includes(card)||TAROT_TRUTH.includes(card);
+const withPos=isTarot?(card+' '+(pos==='up'?'正':'逆')):card;
+if(ctx==='patron'){
+pendingRound.cards=[withPos];
+const b=document.getElementById('pt-specific-btn');if(b)b.textContent=withPos;
+}else if(ctx==='rel-pick'){
+pendingRound.cards=[card];
+const b=document.getElementById('rel-pick-btn');if(b)b.textContent=card;
+}else if(type==='explore'||type==='truth'){
+pendingRound.cards=[withPos];
+const b=document.getElementById('normal-btn');if(b)b.textContent=withPos;
+}else{
+pendingRound.cards=[isTarot?withPos:card];
+const bid=type==='wheel'?'wheel-btn':type==='golden'?'golden-btn':'normal-btn';
+const b=document.getElementById(bid);if(b)b.textContent=isTarot?withPos:card;
+}
+modalPos='up';
+}
+function confirmRound(){
+if(!pendingRound.type){toast('請先選擇格子種類');return;}
+if(pendingRound.type==='patron'){
+if(!pendingRound.patronRole){toast('請選擇貴人卡情況');return;}
+if(pendingRound.patronRole==='helper'){
+const t=document.getElementById('pt-target');if(t)pendingRound.targetPlayer=parseInt(t.value);
+if(!pendingRound.cards.length){toast('請選擇牌卡');return;}
+}else{
+const f=document.getElementById('pt-helper-from');if(f)pendingRound.helperFrom=parseInt(f.value);
+if(!pendingRound.cards.length){toast('請選擇牌卡');return;}
+}
+if(pendingRound.patronType==='wheel'){const w=document.getElementById('pt-wheel-winner');if(w&&w.value)pendingRound.wheelWinner=parseInt(w.value);}
+}
+if(pendingRound.type==='release'){
+if(!pendingRound.releaseType){toast('請選擇放下情況');return;}
+if(pendingRound.releaseType==='voluntary'&&!pendingRound.cards[0]){toast('請選擇放下的牌卡');return;}
+}
+if(pendingRound.type==='wheel'){
+if(!pendingRound.wheelRole){toast('請選擇命運之輪情況');return;}
+if(pendingRound.wheelRole==='trigger'){
+const w=document.getElementById('wheel-winner');if(w&&w.value)pendingRound.wheelWinner=parseInt(w.value);
+if(!pendingRound.cards[0]){toast('請選擇牌卡');return;}
+}else{
+const f=document.getElementById('wheel-from');if(f)pendingRound.wheelFrom=parseInt(f.value);
+if(!pendingRound.cards[0]){toast('請選擇牌卡');return;}
+}
+}
+if(!pendingRound.cards.length&&pendingRound.type!=='patron'){toast('請選擇牌卡');return;}
+pendingRound.obs=document.getElementById('round-obs').value;
+pendingRound.time=new Date().toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit'});
+const p=S.players[curGame];
+pendingRound.stage=p.currentStage||'身';
+p.rounds.push({...pendingRound});
+save();
+document.getElementById('add-round-panel').style.display='none';
+renderRounds();renderCurPlayer();toast('✦已記錄');
+}
+// ══ 過關 ══
+function markPassed(){
+const p=S.players[curGame];
+document.getElementById('pass-player-name').textContent=p.name||'玩家'+(curGame+1);
+document.getElementById('pass-stage-info').textContent='目前已過關：'+(p.passed.length?p.passed.map(x=>x.stage).join('、'):'尚未過關');
+document.getElementById('pass-note').value='';
+const sel=document.getElementById('pass-stage');
+if(sel&&p.currentStage&&p.currentStage!=='完成')sel.value=p.currentStage;
+document.getElementById('modal-pass').classList.add('show');
+}
+function confirmPass(){
+const stage=v('pass-stage'),note=v('pass-note');
+const p=S.players[curGame];
+p.passed.push({stage,note,time:new Date().toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit'})});
+if(stage==='身')p.currentStage='心';else if(stage==='心')p.currentStage='靈';else if(stage==='靈')p.currentStage='完成';
+if(!window._col)window._col={};
+window._col['c-'+curGame+'-'+stage]=true;
+save();closeModal('modal-pass');renderCurPlayer();renderGame();toast('◎'+stage+'過關！');
+}
+// ══ 藍圖 ══
+function renderBp(){renderPTabs('bp-player-tabs',curBp,selBp);renderBpC();}
+function selBp(i){curBp=i;renderBpC();}
+function renderBpC(){
+const p=S.players[curBp];
+const c=document.getElementById('bp-content');
+if(!p){c.innerHTML='<div class="empty">尚無玩家資料</div>';return;}
+c.innerHTML=`<div class="card"><div class="card-title"><span>✦</span>${p.name||'玩家'+(curBp+1)}的答案藍圖</div>
+${['身','心','靈'].map(stage=>`<div class="bp-stage"><div class="bp-stage-hd">${stage} ｜ ${{身:'外在世界',心:'內在感受',靈:'靈魂渴望'}[stage]}</div><div class="bp-slots">${bpSlot(curBp,stage,'issue')}${bpSlot(curBp,stage,'tarot')}${bpSlot(curBp,stage,'guide')}</div></div>${stage!=='靈'?'<div class="div"></div>':''}`).join('')}
+</div>`;
+}
+function bpSlot(pi,stage,slot){
+const b=S.players[pi].blueprint[stage];
+const val=b[slot];
+const L={issue:'議題卡',tarot:'探索/真相',guide:'指引卡'};
+if(val)return`<div class="bp-slot filled" onclick="openBpM(${pi},'${stage}','${slot}')"><div class="bp-slot-tag">${L[slot]}</div><div class="bp-slot-name">${val.replace(/ (正|逆)$/,'')}</div>${val.includes('正')||val.includes('逆')?`<div class="bp-slot-pos">${val.includes('正')?'正位':'逆位'}</div>`:''}</div>`;
+return`<div class="bp-slot" onclick="openBpM(${pi},'${stage}','${slot}')"><div class="bp-slot-tag">${L[slot]}</div><div class="bp-slot-empty">點擊選擇</div></div>`;
+}
+function openBpM(pi,stage,slot){
+bpCtx={pi,stage,slot};bpTarotPos='up';
+let title='',cards=[];
+if(slot==='issue'){title='議題卡';cards=ISSUE_CARDS;}
+else if(slot==='guide'){title='指引卡';cards=[{group:'🔴火',items:GUIDE_CARDS.fire},{group:'🟢土',items:GUIDE_CARDS.earth},{group:'🟣風',items:GUIDE_CARDS.wind},{group:'🔵水',items:GUIDE_CARDS.water}];}
+else{title='探索卡/真相卡';cards=[{group:'探索卡',items:TAROT_EXPLORE},...TRUTH_GROUPED];}
+document.getElementById('modal-bp-title').textContent=title;
+const list=document.getElementById('modal-bp-list');
+const mkBtn=c=>`<button class="btn-sec" onclick="pickBp('${c.replace(/'/g,"\\'")}','${slot}')" style="padding:7px 11px;font-size:12px">${c}</button>`;
+if(Array.isArray(cards)&&typeof cards[0]==='string'){
+let html='';
+if(slot==='tarot')html=`<div style="display:flex;gap:8px;margin-bottom:10px"><button id="bpu" onclick="setBpPos('up')" style="flex:1;padding:8px;border-radius:8px;border:1px solid rgba(45,106,79,0.4);background:rgba(45,106,79,0.2);color:#1a4a30;font-size:12px;cursor:pointer">正位</button><button id="bpr" onclick="setBpPos('rev')" style="flex:1;padding:8px;border-radius:8px;border:1px solid rgba(155,114,207,0.25);background:#faf7fd;color:rgba(28,16,48,0.6);font-size:12px;cursor:pointer">逆位</button></div>`;
+list.innerHTML=html+`<div style="display:flex;flex-wrap:wrap;gap:7px">${cards.map(mkBtn).join('')}</div>`;
+}else{
+let html='';
+if(slot==='tarot')html=`<div style="display:flex;gap:8px;margin-bottom:10px"><button id="bpu" onclick="setBpPos('up')" style="flex:1;padding:8px;border-radius:8px;border:1px solid rgba(45,106,79,0.4);background:rgba(45,106,79,0.2);color:#1a4a30;font-size:12px;cursor:pointer">正位</button><button id="bpr" onclick="setBpPos('rev')" style="flex:1;padding:8px;border-radius:8px;border:1px solid rgba(155,114,207,0.25);background:#faf7fd;color:rgba(28,16,48,0.6);font-size:12px;cursor:pointer">逆位</button></div>`;
+list.innerHTML=html+cards.map(g=>`<div style="margin-bottom:12px"><div style="font-size:11px;color:rgba(28,16,48,0.6);margin-bottom:6px;font-weight:600">${g.group}</div><div style="display:flex;flex-wrap:wrap;gap:6px">${g.items.map(mkBtn).join('')}</div></div>`).join('');
+}
+document.getElementById('modal-bp').classList.add('show');
+}
+function setBpPos(pos){
+bpTarotPos=pos;
+const u=document.getElementById('bpu'),r=document.getElementById('bpr');
+if(u){u.style.background=pos==='up'?'rgba(45,106,79,0.2)':'#faf7fd';u.style.borderColor=pos==='up'?'rgba(45,106,79,0.4)':'rgba(155,114,207,0.25)';}
+if(r){r.style.background=pos==='rev'?'rgba(192,57,43,0.15)':'#faf7fd';r.style.borderColor=pos==='rev'?'rgba(192,57,43,0.4)':'rgba(155,114,207,0.25)';}
+}
+function pickBp(card,slot){
+const{pi,stage}=bpCtx,pos=bpTarotPos;
+S.players[pi].blueprint[stage][slot]=slot==='tarot'?(card+' '+(pos==='up'?'正':'逆')):card;
+if(slot==='tarot')S.players[pi].blueprint[stage].tarotPos=pos;
+bpTarotPos='up';save();closeModal('modal-bp');renderBpC();
+}
+// ══ 生成 ══
+function renderGen(){renderPTabs('gen-player-tabs',curGen,selGen);renderGenSum();}
+function selGen(i){curGen=i;renderGen();document.getElementById('gen-result').style.display='none';}
+function renderGenSum(){
+const p=S.players[curGen],el=document.getElementById('gen-summary');
+if(!p){el.innerHTML='<div class="empty">請先建立玩家</div>';return;}
+const bp=p.blueprint;
+const cfg={身:{bg:'#deeeff',tc:'#0a3a50'},心:{bg:'#fde8f4',tc:'#7a1040'},靈:{bg:'#efe8fd',tc:'#3a0080'}};
+el.innerHTML=`<div class="card-title" style="color:#3a0080"><span>🔮</span>${p.name||'玩家'+(curGen+1)}的藍圖摘要</div>`+
+['身','心','靈'].map(s=>{
+const b=bp[s],c=cfg[s];
+const iC=b.issue?`<span class="card-chip cc-issue">🎭 ${b.issue}</span>`:'';
+let tC='';if(b.tarot){const tn=b.tarot.replace(/ (正|逆)$/,'');const isR=b.tarot.endsWith(' 逆');tC=TAROT_EXPLORE.includes(tn)?`<span class="card-chip ${isR?'cc-explore-rev':'cc-explore-up'}">🔮 ${tn} ${isR?'逆':'正'}</span>`:`<span class="card-chip ${isR?'cc-truth-rev':'cc-truth-up'}">👁️‍🗨️ ${tn} ${isR?'逆':'正'}</span>`;}
+const gC=b.guide?`<span class="card-chip cc-guide-${getGuideEl(b.guide)}">🌠 ${b.guide}</span>`:'';
+return`<div style="margin-bottom:8px;padding:9px;background:${c.bg};border-radius:8px;border:1px solid rgba(28,16,48,0.08)"><div style="font-size:10px;color:${c.tc};font-weight:700;margin-bottom:6px;letter-spacing:2px">${s}</div><div style="display:flex;gap:5px;flex-wrap:wrap">${iC}${tC}${gC}</div></div>`;
+}).join('');
+}
+async function generateReport(){
+const p=S.players[curGen];
+if(!p?.question){toast('請先填入玩家的問題');return;}
+const bp=p.blueprint;
+if(!['身','心','靈'].some(s=>bp[s].guide||bp[s].issue)){toast('請先選擇答案藍圖');return;}
+document.getElementById('loading').classList.add('show');
+document.getElementById('btn-gen').disabled=true;
+try{
+const prompt=buildPrompt(p);
+const resp=await fetch('https://api.anthropic.com/v1/messages',{
+method:'POST',headers:{'Content-Type':'application/json'},
+body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:1000,messages:[{role:'user',content:prompt}]})
+});
+const data=await resp.json();
+if(data.error)throw new Error(data.error.message||'API error');
+const text=data.content?.[0]?.text||'';
+if(!text)throw new Error('回應為空，請重試');
+parseInsights(text,p);
+document.getElementById('gen-result').style.display='block';
+document.getElementById('gen-result').scrollIntoView({behavior:'smooth',block:'start'});
+toast('✦報告草稿已生成');
+}catch(e){console.error(e);toast('生成失敗：'+(e.message||'請重試'));}
+finally{document.getElementById('loading').classList.remove('show');document.getElementById('btn-gen').disabled=false;}
+}
+function buildPrompt(p){
+const bp=p.blueprint;
+const det=['身','心','靈'].map(s=>{
+const b=bp[s],gc=GUIDE_CONTENT[b.guide]||'';
+const obs=p.rounds.map(r=>r.obs).filter(Boolean).join('；')||'（無）';
+return`【${s}】藍圖：議題「${b.issue||'未選'}」、塔羅「${b.tarot||'未選'}」、指引「${b.guide||'未選'}」\n指引內容：「${gc}」\n觀察：${obs}`;
+}).join('\n');
+return`你是答案桌遊的答案導師助手，根據以下資訊生成報告草稿。
+玩家問題：「${p.question}」
+玩家：${p.name||'（未填）'}${p.sign?` ｜${p.sign}${p.element}`:''}
+${det}
+請按格式輸出：
+[身-冰山洞察]
+（2-3句，從議題卡卡點出發，塔羅佐證現狀，指引卡點出方向。用「你」稱呼，語氣溫柔有深度）
+[心-冰山洞察]
+（同上，針對內在感受層次）
+[靈-冰山洞察]
+（同上，針對靈魂渴望層次）
+[整合結論]
+（100-150字，以「你」開頭，從玩家問題出發，流動串連身心靈三層，語氣像一封信，結尾呼應問題。指引卡是主角。）
+使用繁體中文，語言有靈境質感：深、靜、容納。`;
+}
+function parseInsights(text,p){
+const ex=tag=>{const m=text.match(new RegExp(`\\[${tag}\\]([\\s\\S]*?)(?=\\[|$)`));return m?m[1].trim():'';};
+p.insights['身']=ex('身-冰山洞察');p.insights['心']=ex('心-冰山洞察');p.insights['靈']=ex('靈-冰山洞察');
+p.conclusion=ex('整合結論');
+document.getElementById('insight-edits').innerHTML=['身','心','靈'].map(s=>`<div class="fg"><div class="fl">${s}｜冰山洞察</div><textarea class="fta" id="ie-${s}" rows="4" style="min-height:90px" oninput="saveIns('${s}',this.value)">${p.insights[s]}</textarea></div>`).join('');
+document.getElementById('conclusion-edit').value=p.conclusion;
+save();
+}
+function saveIns(stage,val){S.players[curGen].insights[stage]=val;save();}
+function saveGenResult(){S.players[curGen].conclusion=v('conclusion-edit');save();}
+// ══ 玩家報告 ══
+function renderReport(){
+document.getElementById('screen-report').style.background='#f4eff9';
+renderPTabs('rp-player-tabs',curRp,selRp,true);buildRpC();
+}
+function selRp(i){curRp=i;buildRpC();}
+function buildRpC(){
+const p=S.players[curRp],c=document.getElementById('report-content');
+if(!p){c.innerHTML='<div class="empty">請選擇玩家</div>';return;}
+const bp=p.blueprint;
+const date=S.session.date?new Date(S.session.date+'T12:00:00').toLocaleDateString('zh-TW',{year:'numeric',month:'long',day:'numeric'}):'';
+const stH=['身','心','靈'].map(s=>{
+const b=bp[s];if(!b.guide&&!b.issue)return'';
+const ge=getGuideEl(b.guide);
+const ec={fire:'rc-fire',earth:'rc-earth',wind:'rc-wind',water:'rc-water'}[ge]||'rc-wind';
+return`<div class="rp-stage-row"><div class="rp-stage-nm">${s}｜${{身:'外在世界',心:'內在感受',靈:'靈魂渴望'}[s]}</div><div class="rp-chips">${b.issue?`<span class="rc rc-issue">📌 ${b.issue}</span>`:''}${b.tarot?`<span class="rc rc-tarot">🃏 ${b.tarot}</span>`:''}${b.guide?`<span class="rc ${ec}">✦ ${b.guide}</span>`:''}</div>${p.insights[s]?`<div class="rp-insight">${p.insights[s]}</div>`:''}</div>`;
+}).join('');
+c.innerHTML=`<div class="rp-header"><div class="rp-brand">靈境｜身心靈調頻所</div><div class="rp-title">答案藍圖</div><div class="rp-q">「${p.question||'（問題未填寫）'}」</div><div class="rp-date">${p.name?p.name+' · ':''}${date}</div></div>
+<div class="rp-sec"><div class="rp-sec-title">✦ 你的答案藍圖</div>${stH||'<div style="color:#999;font-size:13px">請完成藍圖選擇</div>'}</div>
+${p.conclusion?`<div class="rp-sec"><div class="rp-sec-title">💌 蓉蓉的話</div><div class="rp-conclusion">${p.conclusion}</div></div>`:''}
+<div class="rp-sec"><div class="rp-sec-title">🌱 我的下一步</div><div class="rp-nextstep"><div class="rp-ns-q">今天之後，我想為自己做的一件事是⋯⋯</div><input class="ns-line" type="text" placeholder="在這裡寫下你的承諾"></div></div>
+<div class="rp-footer"><div class="rp-footer-brand">靈境｜身心靈調頻所</div><div class="rp-footer-txt">感覺混亂、不知道卡在哪的人<br>來靈境找回自己的頻率</div><a class="rp-footer-link" href="https://www.skool.com/spiritual-realm-7537/about?ref=d020579bede24700be6b340c252fb17b" target="_blank">預約下次場次 →</a></div>`;
+}
+// ══ 玩家 Tabs ══
+function renderPTabs(id,activeI,fn,light=false){
+const n=S.session.count||4,el=document.getElementById(id);if(!el)return;
+const ec={fire:{bg:'rgba(255,220,210,0.8)',b:'rgba(192,57,43,0.5)',c:'#7a1a0a',ab:'rgba(192,57,43,0.2)'},water:{bg:'rgba(210,235,248,0.8)',b:'rgba(26,95,122,0.5)',c:'#0a3a50',ab:'rgba(26,95,122,0.2)'},wind:{bg:'rgba(230,220,248,0.8)',b:'rgba(123,90,176,0.5)',c:'#3a0080',ab:'rgba(123,90,176,0.2)'},earth:{bg:'rgba(210,240,225,0.8)',b:'rgba(45,106,79,0.5)',c:'#1a4a30',ab:'rgba(45,106,79,0.2)'}};
+el.innerHTML=S.players.slice(0,n).map((p,i)=>{
+const raw=p.rawElement,e=ec[raw]||{bg:'rgba(230,220,248,0.6)',b:'rgba(155,114,207,0.4)',c:'#3a0080',ab:'rgba(155,114,207,0.2)'};
+const isA=i===activeI;
+const st=`background:${isA?e.ab:e.bg};border:${isA?'1.5px':'1px'} solid ${e.b};color:${e.c};font-weight:${isA?'600':'400'}`;
+return`<div class="ptab" style="${st}" onclick="${fn.name}(${i})">${p.name||'玩家'+(i+1)}${p.passed.length?' ✓':''}</div>`;
+}).join('');
+}
+// ══ Util ══
+function closeModal(id){document.getElementById(id).classList.remove('show');}
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);}
+function showConfirm(title,msg,onOk){
+document.getElementById('modal-confirm-title').textContent=title;
+document.getElementById('modal-confirm-msg').textContent=msg;
+const b=document.getElementById('modal-confirm-ok');b.onclick=()=>{closeModal('modal-confirm');onOk();};
+document.getElementById('modal-confirm').classList.add('show');
+}
+function newSession(){showConfirm('確定要新場次嗎？','目前所有記錄將會清除，此動作無法復原。',()=>{
+localStorage.removeItem('lj_v3');
+S={session:defSession(),players:Array.from({length:4},(_,i)=>defPlayer(i))};
+showTab('session');restoreSF();renderPlayers();toast('✦新場次已建立');
+});}
+// ══ Init ══
+function init(){
+load();
+if(!S.session.date)S.session.date=new Date().toISOString().slice(0,10);
+restoreSF();
+document.getElementById('tb-sub').textContent=S.session.no?'場次 '+S.session.no:'場次記錄工具';
+}
+init();</script>
+</body>
+</html>
