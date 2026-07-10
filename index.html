@@ -487,13 +487,12 @@ document.getElementById('loading').classList.add('show');
 document.getElementById('btn-gen').disabled=true;
 try{
 const prompt=buildPrompt(p);
-const resp=await fetch('https://api.anthropic.com/v1/messages',{
-method:'POST',headers:{'Content-Type':'application/json'},
-body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:1000,messages:[{role:'user',content:prompt}]})
+const resp=await fetch('https://hook.us2.make.com/45b2biugvre15rsm8ooxhmp8cfcrq9bi',{
+method:'POST',
+headers:{'Content-Type':'application/json'},
+body:JSON.stringify({prompt:prompt})
 });
-const data=await resp.json();
-if(data.error)throw new Error(data.error.message||'API error');
-const text=data.content?.[0]?.text||'';
+const text=await resp.text();
 if(!text)throw new Error('回應為空，請重試');
 parseInsights(text,p);
 document.getElementById('gen-result').style.display='block';
